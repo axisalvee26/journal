@@ -667,15 +667,13 @@ ${recent||'No history yet'}
 (3-5 টা specific actionable suggestion)`;
 
   try{
-    const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
       headers:{
         'Content-Type':'application/json',
-        'Authorization':'Bearer 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',
-        'HTTP-Referer':'https://axisalvee26.github.io',
-        'X-Title':'MRC Trading Journal'
+        'Authorization':'Bearer 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'
       },
-      body:JSON.stringify({model:'anthropic/claude-sonnet-4-5',max_tokens:1500,messages:[{role:'user',content:prompt}]})
+      body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1500,messages:[{role:'user',content:prompt}]})
     });
     if(!res.ok){const err=await res.json();tel.textContent='API Error: '+(err.error?.message||'Unknown error');return;}
     const data=await res.json();
